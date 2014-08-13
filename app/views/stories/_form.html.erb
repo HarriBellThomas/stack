@@ -1,0 +1,13 @@
+<!--   _form makes a partial template, to be called by ruby: render "form"   -->
+
+<%= simple_form_for @story do |f| %>
+
+	<%= f.input :title, label_html: { class: "light_font_weight" } %>
+
+	<%= f.input :url, label_html: { class: "light_font_weight" } %>
+
+	<%= f.input :description, label_html: { class: "light_font_weight" } %>
+
+	<br><%= f.button :submit %>
+
+<% end %>

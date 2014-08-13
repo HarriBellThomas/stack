@@ -1,0 +1,30 @@
+<!--<h1 id="title">Viewing <%= @story.title %></h1>-->
+
+<h2><%= link_to @story.title, @story.url %></h2>
+
+<p><%= @story.description %></p>
+<p class="light">This was posted <%= time_ago_in_words @story.created_at %> ago</p>
+
+
+<div class="actions">
+	<%= link_to "Upvote", story_votes_path(@story), method: :post %>	
+	<%= pluralize(@story.votes.size, "upvote") %>&nbsp;&nbsp;
+	<%= link_to "Edit This", edit_story_path(@story) %>
+	<%= link_to "Delete This", story_path(@story), method: :delete %>
+</div>
+
+<br><h2>Comments</h2><br>
+<div class="comments">
+	<% @story.comments.each do |c| %>
+	<div class="a_comment" style="border: rgb(107, 107, 107);border-style: solid;padding: 20px;margin-top: -3px;width:70%;">
+
+		<%= simple_format(c.body) %>
+		(ID. <%= c.id %>)
+		Created <%= time_ago_in_words c.created_at %> ago
+		&nbsp;&nbsp;<%= link_to "Delete", story_comment_path(c.story_id, c.id), method: :delete %>
+	</div>
+	<% end %>
+</div>
+
+<br>
+<%= link_to "Add Comment", new_story_comment_path(@story) %>
